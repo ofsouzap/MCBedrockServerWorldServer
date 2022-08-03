@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from socket import socket as Socket;
 from pathlib import Path;
 from subprocess import run;
