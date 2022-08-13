@@ -82,10 +82,18 @@ def move_dir_contents(src_dir: Path,
 
     src_dir.rmdir();
 
-def move_world_to_backup(world_dir: Path) -> None:
+def move_world_to_server_backup(world_dir: Path) -> None:
 
     """Moves the copy of a world in the worlds directory to the backups directory removing the original in the process."""
 
     new_dir = get_next_backup_path(Path(SERVER_BACKUPS_DIR), world_dir.name);
+
+    move_dir_contents(world_dir, new_dir);
+
+def move_world_to_client_backup(world_dir: Path) -> None:
+
+    """Moves the copy of a world in the worlds directory to the backups directory removing the original in the process."""
+
+    new_dir = get_next_backup_path(Path(CLIENT_BACKUPS_DIR), world_dir.name);
 
     move_dir_contents(world_dir, new_dir);

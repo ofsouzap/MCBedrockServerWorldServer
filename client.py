@@ -9,8 +9,10 @@ import socket;
 from struct import unpack, pack;
 
 import file_exchange;
+from setup import set_up_client;
 from settings import *;
 from globals import *;
+from world_store import move_world_to_client_backup;
 
 def set_mc_server_world_name(wdir_name: str) -> None:
 
@@ -125,23 +127,6 @@ def get_input_world_option(wdir_names: tList[str],
         else:
             print("Invalid choice.\n");
 
-def delete_directory(dir: Path):
-
-    for item in dir.iterdir():
-
-        if item.is_file():
-            item.unlink();
-        
-        elif item.is_dir():
-            delete_directory(item.absolute());
-
-        else:
-            raise Exception(f"Directory item found that isn't file or directory at: {item.absolute()}");
-
-    # Once contents removed, remove directory
-
-    dir.rmdir();
-
 def confirm_replace_dir(dir: Path) -> bool:
 
     while True:
@@ -167,7 +152,7 @@ def try_take_world_from_server(saddr: tTuple[str, int],
     if wdir_path.is_dir():
 
         if confirm_replace_dir(wdir_path):
-            delete_directory(wdir_path);
+            move_world_to_client_backup(wdir_path);
 
         else:
             return False;
@@ -229,6 +214,8 @@ def return_world_to_server(saddr: tTuple[str, int],
     file_exchange.send_dir(sock, wdir_path);
 
 def main() -> None:
+
+    set_up_client();
 
     saddr = get_server_addr();
 

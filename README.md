@@ -27,3 +27,4 @@ The client device only needs the following scripts:
 - globals.py
 - settings.py
 - setup.py
+- world_store.py

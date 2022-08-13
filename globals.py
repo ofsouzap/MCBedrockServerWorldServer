@@ -19,6 +19,7 @@ SERVER_WORLDS_DIR = "worlds_store";
 SERVER_BACKUPS_DIR = "backups";
 
 CLIENT_WORLDS_DIR = "worlds";
+CLIENT_BACKUPS_DIR = "world-backups";
 
 SERVER_ACCESS_LOG_FILE = "access-log.txt";
 

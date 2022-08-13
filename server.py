@@ -120,7 +120,7 @@ def handle_client_return_world(cli: Socket,
 
         wpath = world_dir_paths[windex];
 
-        world_store.move_world_to_backup(wpath); # Backup the current version of the world
+        world_store.move_world_to_server_backup(wpath); # Backup the current version of the world
 
         # TODO - once world locking implemented, unlock world here
 
